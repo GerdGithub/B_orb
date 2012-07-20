@@ -1,0 +1,305 @@
+\documentclass[12pt]{scrartcl}
+\usepackage{a4}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{dsfont}
+\usepackage{latexsym}
+\usepackage{color}
+\usepackage{bbm,exscale}
+\definecolor{Myblue}{rgb}{0,0,0.6}
+\usepackage[a4paper,colorlinks,citecolor=Myblue,linkcolor=Myblue,urlcolor=Myblue,pdfpagemode=None]{hyperref}
+\usepackage[square,numbers,sort&compress]{natbib}
+\usepackage[all,cmtip]{xy}
+\usepackage{tikz}
+
+  \tolerance 1414
+  \hbadness 1414
+  \hfuzz 0.3pt
+  \widowpenalty=10000
+  \vfuzz \hfuzz
+  \raggedbottom
+  
+\def\nicecolourscheme{\shadedraw[top color=blue!5, bottom color=blue!35, draw=blue!50!black, dashed]}
+\def\boringcolourscheme{\draw[fill=blue!20, dashed]}
+
+\newcommand{\D}{\text{d}}
+\newcommand{\E}{\text{e}}
+\newcommand{\I}{\text{i}}
+\newcommand{\C}{\mathds{C}}
+\newcommand{\M}{\mathds{M}}
+\newcommand{\N}{\mathds{N}}
+\newcommand{\Q}{\mathds{Q}}
+\newcommand{\R}{\mathds{R}}
+\newcommand{\Z}{\mathds{Z}}
+\def\1{\ifmmode\mathrm{1\!l}\else\mbox{\(\mathrm{1\!l}\)}\fi}
+\newcommand{\one}{\mathbbm{1}}
+\newcommand{\be}{\begin{equation}}
+\newcommand{\ee}{\end{equation}}
+\newcommand{\bes}{\begin{equation*}}
+\newcommand{\ees}{\end{equation*}}
+
+\newcommand{\sVir}{\mathsf{sVir}}
+\newcommand{\MF}{\operatorname{MF}_{\operatorname{bi}}}
+\newcommand{\MFW}{\operatorname{MF}_{\operatorname{bi}}(W)}
+\newcommand{\MFR}{\operatorname{MF}^\text{R}_{\operatorname{bi}}}
+\newcommand{\DG}{\operatorname{DG}_{\operatorname{bi}}}
+\newcommand{\DGW}{\operatorname{DG}_{\text{bi}}(W)}
+\newcommand{\DGR}{\operatorname{DG}^\text{R}_{\text{bi}}}
+\newcommand{\tc }{\otimes_\C}
+\newcommand{\tr}{\otimes_R}
+\newcommand{\id}{\text{id}}
+\newcommand{\KMF}{K_{0}(\operatorname{MF}_{\text{bi}}}
+\newcommand{\Ext}{\operatorname{Ext}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\ev}{\operatorname{ev}}
+\newcommand{\tev}{\widetilde{\operatorname{ev}}}
+\newcommand{\coev}{\operatorname{coev}}
+\newcommand{\tcoev}{\widetilde{\operatorname{coev}}}
+\newcommand{\Ga}[1]{\Gamma_{\hspace{-2pt}#1}}
+
+\newcommand\nxt{\noindent\raisebox{.08em}{\rule{.44em}{.44em}}\hspace{.4em}}
+\newcommand\arxiv[2]      {\href{http://arXiv.org/abs/#1}{#2}}
+\newcommand\doi[2]        {\href{http://dx.doi.org/#1}{#2}}
+\newcommand\httpurl[2]    {\href{http://#1}{#2}}
+
+\renewcommand{\labelenumi}{(\roman{enumi})}
+
+\allowdisplaybreaks
+
+\deffootnote[1em]{1em}{1em}
+{\textsuperscript{\thefootnotemark}}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newtheorem{proposition}[definition]{Proposition}
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{remark}[definition]{Remark}
+\newtheorem{remarks}[definition]{Remarks}
+\newtheorem{conjecture}[definition]{Conjecture}
+
+\numberwithin{equation}{section}
+\numberwithin{definition}{section}
+\numberwithin{figure}{section}
+
+
+\newcommand\void[1]{}
+
+\begin{document}
+
+\title{
+Orbifold completion of defect bicategories
+\\[1em]
+Generalised orbifolds and Frobenius algebras -- with an application to Landau-Ginzburg models
+\\[1em]
+Frobenius algebras and Landau-Ginzburg orbifolds
+\\[1em]
+Bicategory of Landau-Ginzburg orbifolds
+\\[1em]
+Orbifold completion of defect bicategories with an application to Landau-Ginzburg models
+\\[1em]
+Generalised orbifolds of Landau-Ginzburg models
+\\[1em]
+CARGO - canonical algebras for rigid generalised orbifolds
+\\[1em]
+etc.
+}
+\author{Nils Carqueville$^*$ \quad Ingo Runkel$^\dagger$
+\\[0.5cm]
+ \normalsize{\tt \href{mailto:nils.carqueville@physik.uni-muenchen.de}{nils.carqueville@physik.uni-muenchen.de}} \quad
+  \normalsize{\tt \href{mailto:ingo.runkel@uni-hamburg.de}{ingo.runkel@uni-hamburg.de}}\\[0.1cm]
+  {\normalsize\slshape $^*$Arnold Sommerfeld Center for Theoretical Physics, }\\[-0.1cm]
+  {\normalsize\slshape LMU M\"unchen, Theresienstra\ss e~37, D-80333 M\"unchen}\\[-0.1cm]
+  {\normalsize\slshape $^*$Excellence Cluster Universe, Boltzmannstra\ss e~2, D-85748 Garching}\\[0.1cm]
+  {\normalsize\slshape $^\dagger$Department Mathematik, Universit\"{a}t Hamburg, }\\[-0.1cm]
+  {\normalsize\slshape Bundesstra\ss e 55, D-20146 Hamburg}\\[-0.1cm]
+}
+\date{}
+\maketitle
+
+\vspace{-11.8cm}
+\hfill {\scriptsize Hamburger Beitr\"age zur Mathematik XXX}
+
+\vspace{-1.0cm}
+
+\hfill {\scriptsize ZMP-HH/XXX}
+
+\vspace{-1.0cm}
+
+\hfill {\scriptsize LMU-ASC XXX}
+
+
+\vspace{12cm}
+
+\begin{abstract}
+category ... category ... category ...
+\end{abstract}
+
+\newpage
+
+\tableofcontents
+
+
+\section{Introduction and summary}\label{introduction}
+
+\begin{verbatim}
+   * ...
+   * inflating new domains into worldsheets 
+   * sketch of TFT_orb from TFT
+   * summary of results
+   * ...
+\end{verbatim}
+
+\section{Two-dimensional topological field theory with defects}
+
+\subsection{TFT with defects as symmetric monoidal functors}
+
+\subsection{Orbifold TFTs}
+
+\subsection{Bicategory of world sheet phases}
+
+
+\section{Algebraic Background}
+
+\begin{verbatim}
+  * motivational paragraph/remark: it's all good, don't be scared of these diagrams; 
+  they're easy, intuitional and efficient; intepretation in terms of defects, boundary 
+  conditions etc.; read FRS
+\end{verbatim}
+
+
+\subsection{Bicategories with adjoints}
+
+\begin{verbatim}
+   * bicategories with adjoints (mostly use string diagrams after initial definition of Zorro)
+   * left & right traces, quantum dimensions etc. 
+\end{verbatim}
+
+\subsection{Algebras and bimodules}
+
+algebras
+
+Frobenius algebras
+
+Frobenius algebras with trace pairing
+
+Prop.
+
+bimodules, bimodule maps
+
+\subsection{Tensor products}
+
+\begin{verbatim}
+   * tensor product over algebras via coequaliser property; exists if idempotents split
+   * projector from all 2-morphisms to bimodule maps
+\end{verbatim}
+
+\section{Orbifold bicategory}
+
+\subsection{Definition of $\mathcal{D}_\mathrm{orb}$}
+
+\begin{verbatim}
+   * Let B be bicategory with adjoints; pivotality for End(W); Hom(V,W) idempotent complete. 
+   * Definition of B_orb. 
+   * Remark: TFT_orb also describes TFT with defects (not known what B, B_orb need to satisfy)
+\end{verbatim}
+
+$\mathcal{D}$ is fully embedded in $D_\mathrm{orb}$ via U to $(U,1)$
+
+\subsection{$(\mathcal{D}_\mathrm{orb})_\mathrm{orb}$ is equivalent to $\mathcal{D}_\mathrm{orb}$}
+
+\begin{verbatim}
+   * TODO: B_orb versus (B_orb)_orb
+\end{verbatim}
+
+\subsection{Equivalences in $\mathcal{D}_\mathrm{orb}$ and invertible quantum dimensions}
+
+\begin{verbatim}
+   * Theorem: A = X^ x X is ssFA if X has invertible qdims (otherwise only symmetric FA)
+   * Theorem: X x_A X^ = Id
+   * Theorem: X and X^ are mutually inverse 1-morphisms in B_orb
+\end{verbatim}
+
+\subsection{Non-degenerate pairings}
+
+
+\section{Bicategory of Landau-Ginzburg models}
+
+\subsection{Definition of $\mathcal{LG}_k$ and adjoints}
+
+\begin{verbatim}
+       # definition of LG_k, evals and coevals
+       # Theorem [PV]: sphere correltator = disk correlator with Delta_W as boundary condition 
+       # formulas for defect action etc. 
+       # either enhance discussion by signs and shifts OR restrict to same parity of variables
+\end{verbatim}
+
+\subsection{Landau-Ginzburg orbifolds}
+
+Show that $LG_k$ has required properties
+
+idempotents split
+
+(reduced?) pivotal
+
+nondegenerate : need to pass to sub-bicategory of even or odd number of variables
+       
+\subsection{Graded matrix factorisations and central charge}
+
+briefly explain matrix factorisations with $U(1)$-charge (just in matrix notation, not the equivariant category setup from our first paper). Define central charge in terms of charges of potential. 
+
+Prop:
+for matrix factorisations with $U(1)$-charge can have defects of invertible quantum dimension only if c1=c2.
+
+\subsection{Open-closed TFTs from orbifolds}
+
+\begin{verbatim}
+   * Theorem: bulk and boundary metric in B_orb are nondeg. if B has nondeg. <->: End(I_W)-->C. 
+   * Theorem: if End_B(W) describes o/cTFT and lasso lemma holds, then End_{B_orb}((W,A)) is o/cTFT.
+\end{verbatim}
+
+
+\section{Examples of Landau-Ginzburg orbifolds}
+
+\subsection{Equivariant matrix factorisations}
+
+\begin{verbatim}
+       # A = Delta! 
+       # A = sum_g Delta_G is ssFA; hmf(W)^G = mod(A)
+\end{verbatim}
+
+Thus proved Cardy condition for G-equivariant matrix factorisation as special case of Cardy for $LG_{orb}$
+
+\subsection{Kn\"orrer periodicity}
+
+\begin{verbatim}
+       # X = Delta x (0 v // u 0) => Knörrer periodicity
+\end{verbatim}
+
+\subsection{Potentials $x^{2d}+y^2$ and $x^{d} + x y^2$}
+
+\begin{verbatim}
+       # X = bla => hmf(W_D) = hmf(W_A)^Z2
+           ** TODO: X^ x X = Delta + P_d/2[1]
+           ** Point out that that we don't have to check End_AA(A) = Jac etc.
+       # comments on how to construct X with qdim != 0? E-type example? 
+\end{verbatim}
+
+
+\begin{thebibliography}{BHLS}
+
+\bibitem[CR]{cr0909.4381}
+N.~Carqueville and I.~Runkel,
+{\it On the monoidal structure of matrix bi-factorisations}, \doi{10.1088/1751-8113/43/27/275401}{J. Phys. A: Math. Theor. \textbf{43} (2010), 275401},
+\arxiv{0909.4381}{[0909.4381 [math-ph]]}.
+
+
+\end{thebibliography}
+
+
+\end{document}
+
